@@ -67,11 +67,11 @@ def get_llm_answer(query, chunks_join):
 
 def QnA_with_LLM(query):
     res = ''
-    excel_chunk = search_best_from_structured(query)[0]
+    excel_chunk = search_best_from_structured(query)
     if excel_chunk:
         print(excel_chunk)
-        res += f'Решение аналогичного вопроса: {excel_chunk.metadata["Решение"]}'
-        category = ' | '.join([f'{i}: {str(excel_chunk.metadata[i])}' for i in ["Аналитика 1", "Аналитика 2", "Аналитика 3"] ])
+        res += f'Решение аналогичного вопроса: {excel_chunk[0].metadata["Решение"]}'
+        category = ' | '.join([f'{i}: {str(excel_chunk[0].metadata[i])}' for i in ["Аналитика 1", "Аналитика 2", "Аналитика 3"] ])
         res += f'\n {category}'
     
     pdf_chunk = search_best_from_unstructured(query)
