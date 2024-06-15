@@ -49,11 +49,10 @@ db2 = FAISS.load_local(
 )
 
 def search_best_from_structured(query):
-
+    print(query)
     docs = db.similarity_search_with_score(query, k=5)
     norm_docs_from_excel = [i[0] for i in docs if i[1]<=0.658243]
     if len(norm_docs_from_excel)>1:
-        print('ffghnfgnfg')
         result_points=real_rerank(norm_docs_from_excel, query)
         doc_real = norm_docs_from_excel[int(result_points.argmax())]
         return doc_real
