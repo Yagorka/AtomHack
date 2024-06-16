@@ -12,6 +12,8 @@ from utils.vector_data import search_best_from_structured, search_best_from_unst
 
 import time
 
+from config import token
+
 
 model_id = 'IlyaGusev/saiga_llama3_8b'
 
@@ -45,7 +47,7 @@ def get_llm_answer(query, chunks_join):
     ===========
     {query}'''.format(chunks_join=chunks_join, query=query)
     
-    SYSTEM_PROMPT = "Ты — Сайга, русскоязычный автоматический ассистент. Ты разговариваешь с людьми и помогаешь им."
+    SYSTEM_PROMPT = "Ты система поддержки пользователей компании Росатом. Ты разговариваешь с людьми и помогаешь им."
     RESPONSE_TEMPLATE = "<|im_start|>assistant\n"
     
     prompt = f'''<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{user_prompt}<|im_end|>\n{RESPONSE_TEMPLATE}'''
@@ -84,7 +86,7 @@ def QnA_with_LLM(query):
 
 
 # Вместо BOT TOKEN HERE нужно вставить токен вашего бота, полученный у @BotFather
-BOT_TOKEN = '7297106948:AAE5rpcsrKgprB1w_hdvdei9ghp573-be1w'
+BOT_TOKEN = token
 
 
 
